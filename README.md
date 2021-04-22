@@ -43,6 +43,7 @@ export default function App() {
 If you're already using `react-toastify` in a shared monorepo, you may want to install `babel-plugin-module-resolver` and alias `react-toastify` to this library on your React Native project.
 
 ```js
+// babel.config.js
 module.exports = {
   plugins: [
     [
@@ -54,6 +55,31 @@ module.exports = {
       },
     ],
   ],
+};
+```
+
+Alternatively, you can configure `resolver.extraNodeModules` in `metro.config.js`
+
+```js
+// metro.config.js
+module.exports = {
+  // ....
+  resolver: {
+    extraNodeModules: new Proxy(
+      {},
+      {
+        get: (target, name) => {
+          if (name === 'react-toastify') {
+            return path.join(
+              process.cwd(),
+              `node_modules/@jamsch/react-native-toastify`
+            );
+          }
+          return path.join(process.cwd(), `node_modules/${name}`);
+        },
+      }
+    ),
+  },
 };
 ```
 
