@@ -44,7 +44,8 @@
   },
   "homepage": "https://github.com/jamsch/react-native-toastify#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^12.1.1",
