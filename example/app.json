@@ -1,0 +1,22 @@
+{
+  "name": "@jamsch/react-native-toastify-example",
+  "displayName": "ReactNativeToastify Example",
+  "expo": {
+    "name": "@jamsch/react-native-toastify-example",
+    "slug": "jamsch-react-native-toastify-example",
+    "description": "Example app for @jamsch/react-native-toastify",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
