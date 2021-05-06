@@ -7,7 +7,7 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import { Snackbar } from 'react-native-paper';
+import { Snackbar, Portal } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import type { TypeOptions, ToastPosition, Id, ToastOptions } from './types';
 import create from 'zustand';
@@ -147,22 +147,23 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({
   }, [state.position]);
 
   return (
-    <Snackbar
-      key={`toast.${state.id || 0}`}
-      onDismiss={toast.hide}
-      style={[types[state.type], style]}
-      wrapperStyle={wrapperStyle}
-      duration={state.duration}
-      visible={state.visibility}
-      action={
-        state.action
-          ? { label: state.actionLabel, onPress: state.action }
-          : undefined
-      }
-    >
-      <Icon size={16} name={icons[state.type]} color="#ffffff" />
-      <Text style={[styles.message, textStyle]}>{`  ${state.message}`}</Text>
-    </Snackbar>
+    <Portal key={`toast.${state.id || 0}`}>
+      <Snackbar
+        onDismiss={toast.hide}
+        style={[types[state.type], style]}
+        wrapperStyle={wrapperStyle}
+        duration={state.duration}
+        visible={state.visibility}
+        action={
+          state.action
+            ? { label: state.actionLabel, onPress: state.action }
+            : undefined
+        }
+      >
+        <Icon size={16} name={icons[state.type]} color="#ffffff" />
+        <Text style={[styles.message, textStyle]}>{`  ${state.message}`}</Text>
+      </Snackbar>
+    </Portal>
   );
 };
 

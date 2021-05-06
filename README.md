@@ -18,21 +18,25 @@ npm install @jamsch/react-native-toastify
 ```js
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
 import { toast, ToastContainer } from '@jamsch/react-native-toastify';
 
 export default function App() {
   return (
     <View>
-      {/** This element will render the toast */}
-      <ToastContainer position="bottom-left" />
+      {/** Required for theming & Snackbar element */}
+      <PaperProvider>
+        {/** This element will render the toast */}
+        <ToastContainer position="bottom-left" />
 
-      {/** Somewhere else in your app */}
-      <TouchableOpacity onPress={() => toast.success('Success!')}>
-        <Text>Success toast</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => toast.info('Info!')}>
-        <Text>Info toast</Text>
-      </TouchableOpacity>
+        {/** Somewhere else in your app */}
+        <TouchableOpacity onPress={() => toast.success('Success!')}>
+          <Text>Success toast</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => toast.info('Info!')}>
+          <Text>Info toast</Text>
+        </TouchableOpacity>
+      </PaperProvider>
     </View>
   );
 }
